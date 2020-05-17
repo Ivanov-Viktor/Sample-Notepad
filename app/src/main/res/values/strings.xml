@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NotesApp</string>
+    <string name="title">Title</string>
+    <string name="text">Text</string>
+    <string name="create_new">Create new</string>
+    <string name="notepad">Notepad</string>
+    <string name="lets_create_new_note">Lets create new note!</string>
+    <string name="notes_list">Notes list</string>
 </resources>

@@ -14,15 +14,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class CreatingFragment : Fragment(),CoroutineScope {
-    override val coroutineContext: CoroutineContext=Dispatchers.Main
+class CreatingFragment : Fragment(), CoroutineScope {
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_creating,container,false)
+        return inflater.inflate(R.layout.fragment_creating, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,11 +31,11 @@ class CreatingFragment : Fragment(),CoroutineScope {
             val title = noteTitle.text.toString()
             val text = noteText.text.toString()
 
-            if (title.isNotBlank()&& text.isNotBlank()) {
+            if (title.isNotBlank() && text.isNotBlank()) {
                 launch {
-                val id = repo.createNewNote(title,text)
-                Toast.makeText(context,"Inserted with id $id", Toast.LENGTH_LONG).show()
-            }
+                    val id = repo.createNewNote(title, text)
+                    Toast.makeText(context, "Inserted with id $id", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

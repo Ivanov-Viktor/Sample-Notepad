@@ -16,7 +16,7 @@
         android:shadowDx="3"
         android:shadowDy="3"
         android:shadowRadius="5"
-        android:text="Notepad"
+        android:text="@string/notepad"
         android:textColor="#FF9800"
         android:textSize="60sp"
         android:textStyle="bold|italic"
@@ -27,38 +27,33 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <Button
             android:id="@+id/creatingFragmentBtn"
             android:layout_width="100dp"
-            android:background="@drawable/button_background"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="italic"
-            android:text="Lets create new note!"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/button_background"
+            android:text="@string/lets_create_new_note"
+            android:textColor="#0A0B0B"
+            android:textStyle="italic" />
+
         <Button
             android:id="@+id/notesListBtn"
-            android:background="@drawable/button_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="italic"
-            android:text="Notes list"
             android:layout_marginTop="20dp"
-            />
-
-
-
-
+            android:background="@drawable/button_background"
+            android:text="@string/notes_list"
+            android:textColor="#0A0B0B"
+            android:textStyle="italic" />
 
 
     </LinearLayout>
