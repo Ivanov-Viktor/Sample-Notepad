@@ -1,8 +1,6 @@
 package com.example.notesapp.data
 
-import android.icu.text.CaseMap
 import com.example.notesapp.NotesApplication
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
