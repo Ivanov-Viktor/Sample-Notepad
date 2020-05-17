@@ -18,24 +18,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragmentContainer, NavFragment())
             .commit()
-
-//        val repo = NoteRepository()
-//
-//        createNew.setOnClickListener {
-//            val title = noteTitle.text.toString()
-//            val text = noteText.text.toString()
-//
-//            if (title.isNotBlank()&& text.isNotBlank()) {
-//                launch {
-//                val id = repo.createNewNote(title,text)
-//                Toast.makeText(applicationContext,"Inserted with id $id", Toast.LENGTH_LONG).show()
-//            }
-//            }
-//        }
-//        notesList.setOnClickListener {
-//            launch {
-//                Log.i("Notes", repo.getAllNotes().toString())
-//            }
     }
 
 }

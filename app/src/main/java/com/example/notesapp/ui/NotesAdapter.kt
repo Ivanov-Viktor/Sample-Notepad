@@ -9,9 +9,10 @@ import com.example.notesapp.data.Note
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 
 class NotesAdapter(
-    val notes: List<Note>
+    private val notes: List<Note>
 ) : RecyclerView.Adapter<NotesAdapter.NotesHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapter.NotesHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.notes_list_item, parent, false)
         return NotesHolder(view)
@@ -19,7 +20,7 @@ class NotesAdapter(
 
     override fun getItemCount() = notes.size
 
-    override fun onBindViewHolder(holder: NotesAdapter.NotesHolder, position: Int) {
+    override fun onBindViewHolder(holder: NotesHolder, position: Int) {
         holder.bind(notes[position])
     }
 

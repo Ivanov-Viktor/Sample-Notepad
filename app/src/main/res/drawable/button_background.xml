@@ -7,7 +7,6 @@
             <solid android:color="#80FF9800" />
 
             <corners android:radius="10dp" />
-            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
 
         </shape>
 
@@ -19,7 +18,6 @@
             <solid android:color="#DFFF9800" />
 
             <corners android:radius="10dp" />
-            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
         </shape>
 
     </item>
