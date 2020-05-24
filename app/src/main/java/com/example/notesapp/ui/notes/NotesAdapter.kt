@@ -1,4 +1,4 @@
-package com.example.notesapp.ui
+package com.example.notesapp.ui.notes
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,16 @@ import com.example.notesapp.data.Note
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 
 class NotesAdapter(
-    private val notes: List<Note>
+    private val deleteNote: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NotesHolder>() {
+
+    private val notes: MutableList<Note> = mutableListOf()
+
+    fun addNotes(newNotes: List<Note>) {
+        val startIndex = notes.size
+        notes.addAll(newNotes)
+        notifyItemRangeInserted(startIndex, newNotes.size)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesHolder {
         val view: View = LayoutInflater.from(parent.context)
@@ -21,16 +29,25 @@ class NotesAdapter(
     override fun getItemCount() = notes.size
 
     override fun onBindViewHolder(holder: NotesHolder, position: Int) {
-        holder.bind(notes[position])
+        holder.bind(notes[position]) {
+            deleteNote(it) // удаляем из БД
+            notes.removeAt(position) // удаляем из списка ресайклера
+            notifyItemRemoved(position) // инициируем перерисовку
+            notifyItemRangeChanged(position, itemCount)
+        }
     }
 
     class NotesHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(note: Note) = itemView.apply {
+        fun bind(note: Note, deleteNote: (Note) -> Unit) = itemView.apply {
             notesTitle.text = note.title
             notesText.text = note.text
+            notePrice.text = note.price.toString()
+
+            buttonDeleteNote.setOnClickListener {
+                deleteNote(note)
+            }
         }
 
     }
-
 }

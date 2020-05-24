@@ -1,4 +1,4 @@
-package com.example.notesapp.ui
+package com.example.notesapp.ui.createnote
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.notesapp.R
 import com.example.notesapp.data.NoteRepository
-import kotlinx.android.synthetic.main.fragment_creating.*
+import kotlinx.android.synthetic.main.fragment_note_creating.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class CreatingFragment : Fragment(), CoroutineScope {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_creating, container, false)
+        return inflater.inflate(R.layout.fragment_note_creating, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,10 +30,11 @@ class CreatingFragment : Fragment(), CoroutineScope {
         createNew.setOnClickListener {
             val title = noteTitle.text.toString()
             val text = noteText.text.toString()
+            val price = notePrice.text.toString().toIntOrNull()
 
-            if (title.isNotBlank() && text.isNotBlank()) {
+            if (title.isNotBlank() && text.isNotBlank() && price != null) {
                 launch {
-                    val id = repo.createNewNote(title, text)
+                    val id = repo.createNewNote(title, text, price, 0)
                     Toast.makeText(context, "Inserted with id $id", Toast.LENGTH_LONG).show()
                 }
             }
