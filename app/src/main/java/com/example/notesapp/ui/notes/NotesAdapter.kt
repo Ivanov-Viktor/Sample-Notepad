@@ -15,9 +15,9 @@ class NotesAdapter(
     private val notes: MutableList<Note> = mutableListOf()
 
     fun addNotes(newNotes: List<Note>) {
-        val startIndex = notes.size
+        notes.clear()
         notes.addAll(newNotes)
-        notifyItemRangeInserted(startIndex, newNotes.size)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesHolder {

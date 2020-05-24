@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.notesapp.R
 import com.example.notesapp.data.NoteRepository
@@ -35,7 +37,26 @@ class ListFragment : Fragment(), CoroutineScope {
         notesList.adapter = adapter
 
         launch {
-            adapter.addNotes(repo.getAllNotes())
+            val allCategories = repo.getAllCategories()
+            val allCategoriesNames = allCategories.map { it.name }.toTypedArray()
+
+            dropdownMenu.adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, arrayOf("All", *allCategoriesNames))
+
+            dropdownMenu.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // do nothing
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    this@ListFragment.launch {
+                        if (position == 0) {
+                            adapter.addNotes(repo.getAllNotes())
+                        } else {
+                            adapter.addNotes(repo.getCategoryWithNotesById(allCategories[position - 1].id).notes)
+                        }
+                    }
+                }
+            }
         }
 
     }

@@ -15,15 +15,12 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/createNewCategory"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:background="@drawable/button_background"
-                android:text="@string/create_new" />
+                android:text="@string/categories_list_title"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoriesList"
@@ -36,6 +33,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/category_item" />
+
+            <Button
+                android:id="@+id/createNewCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@drawable/button_background"
+                android:text="@string/create_new" />
 
         </LinearLayout>
 

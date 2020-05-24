@@ -1,9 +1,11 @@
 package com.example.notesapp.data
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "notes")
 data class Note(
@@ -14,12 +16,12 @@ data class Note(
     @PrimaryKey(autoGenerate = true) val id: Long = 0
 )
 
-
+@Parcelize
 @Entity(tableName = "categories")
 data class Category(
     val name: String,
     @PrimaryKey(autoGenerate = true) val id: Long = 0
-)
+): Parcelable
 
 
 data class CategoryWithNotes(

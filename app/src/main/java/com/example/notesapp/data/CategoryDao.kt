@@ -18,4 +18,8 @@ interface CategoryDao {
     @Query("select * from categories")
     suspend fun getCategoriesWithNotes(): List<CategoryWithNotes>
 
+    @Transaction
+    @Query("select * from categories where categories.id = :id")
+    suspend fun getCategoryWithNotesById(id: Long): CategoryWithNotes
+
 }

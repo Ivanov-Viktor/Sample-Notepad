@@ -33,5 +33,13 @@ class NoteRepository {
     suspend fun deleteCategory(category: Category) = withContext(coroutineContext) {
         categoryDao.deleteCategory(category)
     }
+
+    suspend fun getCategoriesWithNotes() = withContext(coroutineContext) {
+        categoryDao.getCategoriesWithNotes()
+    }
+
+    suspend fun getCategoryWithNotesById(id: Long) = withContext(coroutineContext) {
+        categoryDao.getCategoryWithNotesById(id)
+    }
 }
 

@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.category_item.view.*
 
 
 class CategoriesAdapter(
-    private val deleteCategory: (Category) -> Unit
+    private val deleteCategory: (Category) -> Unit,
+    private val navigateToNoteFragment: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoriesAdapter.CategoryHolder>() {
 
     private val categories: MutableList<Category> = mutableListOf()
@@ -30,7 +31,7 @@ class CategoriesAdapter(
     override fun getItemCount() = categories.size
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
-        holder.bind(categories[position]) {
+        holder.bind(categories[position], navigateToNoteFragment) {
             deleteCategory(it) // удаляем из БД
             categories.removeAt(position) // удаляем из списка ресайклера
             notifyItemRemoved(position) // инициируем перерисовку
@@ -40,11 +41,19 @@ class CategoriesAdapter(
 
     class CategoryHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(category: Category, deleteCategory: (Category) -> Unit) = itemView.apply {
+        fun bind(
+            category: Category,
+            navigateToNoteFragment: (Category) -> Unit,
+            deleteCategory: (Category) -> Unit
+        ) = itemView.apply {
             categoryName.text = category.name
 
             buttonDeleteCategory.setOnClickListener {
                 deleteCategory(category)
+            }
+
+            setOnClickListener {
+                navigateToNoteFragment(category)
             }
         }
 
